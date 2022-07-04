@@ -4,25 +4,31 @@ import Flix from "./routes/Flix";
 import Main from "./routes/Main";
 import Upcoming from "./routes/Upcoming";
 import Playlists from "./routes/Playlists";
+import Info from "./routes/Info";
+import NotFound from "./routes/404";
 
 import "./global.scss";
 
-function App() {
+//add context for user authentication
+//add context for data
+
+const App = () => {
   return (
     <>
-      <main className="App">
+      <div className="App">
         <Router>
           <Routes>
             <Route exact path="/" element={<Main />} />
             <Route path="/flix" element={<Flix />} />
             <Route path="/upcoming" element={<Upcoming />} />
             <Route path="/playlists" element={<Playlists />} />
+            <Route path="/info" element={<Info />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>
-      </main>
-      <footer>{/* footer component goes here */}</footer>
+      </div>
     </>
   );
-}
+};
 
 export default App;

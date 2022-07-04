@@ -3,18 +3,14 @@ import Header from "../../components/Header";
 
 import "./style.scss";
 
-const Upcoming = () => {
+const NotFound = () => {
   return (
     <>
       <Header />
-      <main>
-        <>
-          <h1>Upcoming</h1>
-        </>
-        <>{/* UPCOMING MOVIE POSTER GRID HERE */}</>
-      </main>
+      <h1>404</h1>
+      <p>That page does not exist here. Click one of the links above</p>
       <Footer />
     </>
   );
 };
-export default Upcoming;
+export default NotFound;

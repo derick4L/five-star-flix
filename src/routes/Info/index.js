@@ -3,16 +3,16 @@ import Footer from "../../components/Footer";
 
 import "./style.scss";
 
-const Main = () => {
+const Info = () => {
   return (
     <>
       <Header />
       <main>
-        <h1>Welcome!</h1>
-        {/* MOVIE POSTER GRID HERE */}
+        <h1>Info</h1>
+        <p>This is the info page. It is a placeholder for now.</p>
+        <Footer />
       </main>
-      <Footer />
     </>
   );
 };
-export default Main;
+export default Info;
