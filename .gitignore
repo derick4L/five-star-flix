@@ -6,5 +6,5 @@
 /build
 
 # misc
+.env
 .DS_Store
-.env.local

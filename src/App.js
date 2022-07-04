@@ -1,3 +1,4 @@
+import { useState, createContext } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Flix from "./routes/Flix";
@@ -8,24 +9,31 @@ import Info from "./routes/Info";
 import NotFound from "./routes/404";
 
 import "./global.scss";
+import Auth from "./routes/Auth";
 
-//add context for user authentication
-//add context for data
+export const UserContext = createContext();
 
 const App = () => {
+  const [authUser, setAuthUser] = useState(
+    localStorage.getItem("emailForSignIn")
+  );
+
   return (
     <>
       <div className="App">
-        <Router>
-          <Routes>
-            <Route exact path="/" element={<Main />} />
-            <Route path="/flix" element={<Flix />} />
-            <Route path="/upcoming" element={<Upcoming />} />
-            <Route path="/playlists" element={<Playlists />} />
-            <Route path="/info" element={<Info />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Router>
+        <UserContext.Provider value={{ user: [authUser, setAuthUser] }}>
+          <Router>
+            <Routes>
+              <Route exact path="/" element={<Main />} />
+              <Route path="/flix" element={<Flix />} />
+              <Route path="/upcoming" element={<Upcoming />} />
+              <Route path="/playlists" element={<Playlists />} />
+              <Route path="/info" element={<Info />} />
+              <Route path="/auth" element={<Auth />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Router>
+        </UserContext.Provider>
       </div>
     </>
   );

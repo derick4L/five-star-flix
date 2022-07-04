@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import "./style.scss";
 
 const Footer = () => {
+  let year = new Date().getFullYear();
   return (
     <>
       <ul>
@@ -23,6 +24,10 @@ const Footer = () => {
         </li>
       </ul>
       {/* Logo goes here */}
+      <>
+        <img src="https://via.placeholder.com/70x70" alt="logo placeholder" />
+        <p>| © {year}</p>
+      </>
     </>
   );
 };
