@@ -19,6 +19,7 @@ const Header = () => {
   useEffect(() => {
     let currentUser = localStorage.getItem("emailForSignIn");
     setAuthUser(currentUser);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authUser]);
 
   return (
