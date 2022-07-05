@@ -1,7 +1,14 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 
+app.use(express.json());
+app.use(cors());
+
 const db = require("./models");
+
+const ratedMovies = require("./routes/RatedMovies");
+app.use("/ratedMovies", ratedMovies);
 
 db.sequelize.sync().then(() => {
   app.listen(3001, () => {

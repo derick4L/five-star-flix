@@ -24,6 +24,9 @@ const GetLatestMovies = () => {
       {movies ? (
         movies.map((movie) => (
           <div key={movie.id}>
+            {/* make each card clickable,
+             opens modal with pre-filled info: currentUser(authUser), movie title.
+             provide input for userComment and rating. */}
             <>
               <div>{movie.title}</div>
               {/* <img

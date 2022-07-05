@@ -8,6 +8,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    createdBy: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     userComment: {
       type: DataTypes.STRING,
       allowNull: false,
