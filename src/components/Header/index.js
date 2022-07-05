@@ -25,7 +25,11 @@ const Header = () => {
   return (
     <>
       <>
-        <img src="https://via.placeholder.com/150x70" alt="logo" />
+        <img
+          src="https://via.placeholder.com/150x70"
+          alt="logo"
+          onClick={() => navigate("/")}
+        />
       </>
       {/* Add Logo and search feature here */}
       <ul>

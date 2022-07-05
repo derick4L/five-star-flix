@@ -7,9 +7,9 @@ import Upcoming from "./routes/Upcoming";
 import Playlists from "./routes/Playlists";
 import Info from "./routes/Info";
 import NotFound from "./routes/404";
+import Auth from "./routes/Auth";
 
 import "./global.scss";
-import Auth from "./routes/Auth";
 
 export const UserContext = createContext();
 

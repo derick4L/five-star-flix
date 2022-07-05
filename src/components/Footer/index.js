@@ -1,9 +1,11 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import "./style.scss";
 
 const Footer = () => {
+  let navigate = useNavigate();
   let year = new Date().getFullYear();
+
   return (
     <>
       <ul>
@@ -27,7 +29,11 @@ const Footer = () => {
       </ul>
       {/* Logo goes here */}
       <>
-        <img src="https://via.placeholder.com/70x70" alt="logo placeholder" />
+        <img
+          src="https://via.placeholder.com/70x70"
+          alt="logo placeholder"
+          onClick={() => navigate("/")}
+        />
         <p>| © {year}</p>
       </>
     </>
