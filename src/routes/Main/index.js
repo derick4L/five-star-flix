@@ -29,7 +29,7 @@ const Main = () => {
         </>
         <>
           <h2>Highly Rated</h2>
-          <p>Titles well recieved by viewers like you.</p>
+          <p>Titles well received by viewers like you.</p>
           <GetHighlyRatedMovies />
         </>
       </main>
