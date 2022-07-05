@@ -7,9 +7,11 @@ const Footer = () => {
   return (
     <>
       <ul>
-        <li>
-          <NavLink to="/">Home</NavLink>
-        </li>
+        {`${window.location.pathname}` === "/" ? null : (
+          <li>
+            <NavLink to="/">Home</NavLink>
+          </li>
+        )}
         <li>
           <NavLink to="/flix">Flix</NavLink>
         </li>
