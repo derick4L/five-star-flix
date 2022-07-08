@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+// import Modal from "../Modal";
+
 import "./style.scss";
 
 const GetHighlyRatedMovies = () => {
   const [highlyRatedMovies, setHighlyRatedMovies] = useState([]);
+
+  // const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     axios
@@ -24,15 +28,19 @@ const GetHighlyRatedMovies = () => {
       {highlyRatedMovies ? (
         highlyRatedMovies.map((highlyRatedMovie) => (
           <div key={highlyRatedMovie.id}>
-            <>
-              <div>{highlyRatedMovie.title}</div>
-              {/* <img
+            <div
+              onClick={() =>
+                alert(`${highlyRatedMovie.original_title} selected`)
+              }
+            >
+              {highlyRatedMovie.title}
+            </div>
+            {/* <img
                 src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
                 alt={movie.original_title}
                 height="250px"
                 width="auto"
               /> */}
-            </>
           </div>
         ))
       ) : (
