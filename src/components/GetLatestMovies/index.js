@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react";
+import { Modal, Button } from "rsuite";
 import axios from "axios";
 
 import "./style.scss";
 
 const GetLatestMovies = () => {
   const [movies, setMovies] = useState([]);
+  const [open, setOpen] = useState(null);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(null);
 
   useEffect(() => {
     axios
@@ -21,26 +25,29 @@ const GetLatestMovies = () => {
 
   return (
     <>
-      {movies ? (
-        movies.map((movie) => (
-          <div key={movie.id}>
-            {/* make each card clickable,
-             opens modal with pre-filled info: currentUser(authUser), movie title.
-             provide input for userComment and rating. */}
-            <>
-              <div>{movie.title}</div>
-              {/* <img
-                src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
-                alt={movie.original_title}
-                height="250px"
-                width="auto"
-              /> */}
-            </>
-          </div>
-        ))
-      ) : (
-        <h3>Sorry about that, try again later</h3>
-      )}
+      {movies.map((movie) => (
+        <div key={movie.id}>
+          <div>{movie.title}</div>
+          <img
+            src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+            alt={movie.original_title}
+            height="250px"
+            width="auto"
+            onClick={() => handleOpen()}
+          />
+        </div>
+      ))}
+      <Modal open={open} onClose={handleClose}>
+        <Modal.Header>
+          <Modal.Title>Movie Details</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {/* Selected movie details go here, along with form to post rating/comments */}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={handleClose}>Close</Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };

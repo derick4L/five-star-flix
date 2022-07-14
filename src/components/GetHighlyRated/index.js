@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-// import Modal from "../Modal";
+import { Modal, Button } from "rsuite";
 
 import "./style.scss";
 
 const GetHighlyRatedMovies = () => {
   const [highlyRatedMovies, setHighlyRatedMovies] = useState([]);
-
-  // const [isOpen, setIsOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   useEffect(() => {
     axios
@@ -28,19 +29,21 @@ const GetHighlyRatedMovies = () => {
       {highlyRatedMovies ? (
         highlyRatedMovies.map((highlyRatedMovie) => (
           <div key={highlyRatedMovie.id}>
-            <div
-              onClick={() =>
-                alert(`${highlyRatedMovie.original_title} selected`)
-              }
-            >
-              {highlyRatedMovie.title}
-            </div>
-            {/* <img
-                src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
-                alt={movie.original_title}
+            <div>
+              <p>{highlyRatedMovie.title}</p>
+              {/* <img
+                src={`https://image.tmdb.org/t/p/original/${highlyRatedMovie.poster_path}`}
+                alt={highlyRatedMovie.original_title}
                 height="250px"
                 width="auto"
               /> */}
+            </div>
+            <Modal show={open} onHide={handleClose} id={highlyRatedMovie.id}>
+              <Modal.Header>
+                <Modal.Title>{highlyRatedMovie.title}</Modal.Title>
+              </Modal.Header>
+            </Modal>
+            <Button onClick={() => handleOpen()}>Open</Button>
           </div>
         ))
       ) : (

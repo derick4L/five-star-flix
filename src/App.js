@@ -9,6 +9,7 @@ import Info from "./routes/Info";
 import NotFound from "./routes/404";
 import Auth from "./routes/Auth";
 
+import "rsuite/dist/rsuite.min.css";
 import "./global.scss";
 
 export const UserContext = createContext();

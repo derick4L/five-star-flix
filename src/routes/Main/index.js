@@ -2,8 +2,8 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
 import GetLatestMovies from "../../components/GetLatestMovies";
-import GetPopularMovies from "../../components/GetPopularMovies";
-import GetHighlyRatedMovies from "../../components/GetHighlyRated";
+// import GetPopularMovies from "../../components/GetPopularMovies";
+// import GetHighlyRatedMovies from "../../components/GetHighlyRated";
 
 import "./style.scss";
 
@@ -22,7 +22,7 @@ const Main = () => {
           <p>Have you seen these titles yet? </p>
           <GetLatestMovies />
         </>
-        <>
+        {/* <>
           <h2>Popular</h2>
           <p>Trending titles</p>
           <GetPopularMovies />
@@ -31,7 +31,7 @@ const Main = () => {
           <h2>Highly Rated</h2>
           <p>Titles well received by viewers like you.</p>
           <GetHighlyRatedMovies />
-        </>
+        </> */}
       </main>
       <Footer />
     </>
