@@ -1,14 +1,23 @@
 import { useState, useEffect } from "react";
-import { Modal, Button } from "rsuite";
+import { Modal } from "rsuite";
 import axios from "axios";
 
 import "./style.scss";
 
 const GetLatestMovies = () => {
   const [movies, setMovies] = useState([]);
-  const [open, setOpen] = useState(null);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(null);
+
+  const handleClose = () => {
+    selectedMovieData.open = false;
+  };
+
+  const [selectedMovieData, setSelectedMovieData] = useState({
+    open: false,
+    movieTitle: null,
+    moviePoster: null,
+    movieRating: null,
+    movieComment: null,
+  });
 
   useEffect(() => {
     axios
@@ -26,28 +35,33 @@ const GetLatestMovies = () => {
   return (
     <>
       {movies.map((movie) => (
-        <div key={movie.id}>
+        <div
+          key={movie.id}
+          onClick={() =>
+            setSelectedMovieData({
+              open: true,
+              movieTitle: movie.original_title,
+              moviePoster: movie.poster_path,
+              movieRating: movie.vote_average,
+              movieComment: null,
+            })
+          }
+        >
           <div>{movie.title}</div>
           <img
             src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
             alt={movie.original_title}
             height="250px"
             width="auto"
-            onClick={() => handleOpen()}
           />
         </div>
       ))}
-      <Modal open={open} onClose={handleClose}>
-        <Modal.Header>
-          <Modal.Title>Movie Details</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {/* Selected movie details go here, along with form to post rating/comments */}
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={handleClose}>Close</Button>
-        </Modal.Footer>
-      </Modal>
+      {selectedMovieData.open ? (
+        <Modal open={selectedMovieData.open} onClose={handleClose}>
+          <Modal.Header>{selectedMovieData.movieTitle}</Modal.Header>
+          <Modal.Body>{selectedMovieData.movieRating}</Modal.Body>
+        </Modal>
+      ) : null}
     </>
   );
 };
