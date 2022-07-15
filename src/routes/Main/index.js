@@ -1,3 +1,4 @@
+import { useEffect, useContext } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
@@ -5,14 +6,29 @@ import GetLatestMovies from "../../components/GetLatestMovies";
 // import GetPopularMovies from "../../components/GetPopularMovies";
 // import GetHighlyRatedMovies from "../../components/GetHighlyRated";
 
+import { UserContext } from "../../App";
+
 import "./style.scss";
 
 const Main = () => {
+  const { user } = useContext(UserContext);
+
+  const [authUser, setAuthUser] = user;
+
+  useEffect(() => {
+    let signedIn = localStorage.getItem("emailForSignIn");
+    setAuthUser(signedIn);
+  }, [authUser]);
+
   return (
     <>
       <Header />
       <main>
-        <h1>Welcome!</h1>
+        {authUser === undefined || authUser === null ? (
+          <h1>Sign In To Rate & Share Your Favorite Films</h1>
+        ) : (
+          <h1>Welcome!</h1>
+        )}
         <p>
           Give your honest feedback on your favorite movies or build a list to
           share with friends!

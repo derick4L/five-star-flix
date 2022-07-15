@@ -7,10 +7,6 @@ import "./style.scss";
 const GetLatestMovies = () => {
   const [movies, setMovies] = useState([]);
 
-  const handleClose = () => {
-    selectedMovieData.open = false;
-  };
-
   const [selectedMovieData, setSelectedMovieData] = useState({
     open: false,
     movieTitle: null,
@@ -18,6 +14,10 @@ const GetLatestMovies = () => {
     movieRating: null,
     movieComment: null,
   });
+
+  const handleClose = () => {
+    selectedMovieData.open = false;
+  };
 
   useEffect(() => {
     axios
@@ -43,7 +43,7 @@ const GetLatestMovies = () => {
               movieTitle: movie.original_title,
               moviePoster: movie.poster_path,
               movieRating: movie.vote_average,
-              movieComment: null,
+              movieComment: "",
             })
           }
         >
