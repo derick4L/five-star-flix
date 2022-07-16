@@ -69,15 +69,18 @@ const GetLatestMovies = ({ user }) => {
           <Modal.Body>
             <div>{selectedMovieData.movieRating}</div>
             {user === undefined || user === null ? (
-              <a
+              <div
                 onClick={() => {
                   navigate("/auth");
                 }}
               >
                 click me to rate and comment on this film
-              </a>
+              </div>
             ) : (
-              <PostReviewForm />
+              <PostReviewForm
+                movieTitle={selectedMovieData.movieTitle}
+                createdBy={user[0]}
+              />
             )}
           </Modal.Body>
         </Modal>
