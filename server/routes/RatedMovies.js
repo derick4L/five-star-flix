@@ -5,6 +5,7 @@ const { RatedMovies } = require("../models");
 
 router.get("/", async (req, res) => {
   const getAllRatedMovies = await RatedMovies.findAll();
+  // Will have to customize the response to include the user's rating and comment
   res.json(getAllRatedMovies);
 });
 

@@ -18,6 +18,7 @@ const Main = () => {
   useEffect(() => {
     let signedIn = localStorage.getItem("emailForSignIn");
     setAuthUser(signedIn);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authUser]);
 
   return (
@@ -36,7 +37,7 @@ const Main = () => {
         <>
           <h2>In Theaters And Streaming</h2>
           <p>Have you seen these titles yet? </p>
-          <GetLatestMovies />
+          <GetLatestMovies user={user} />
         </>
         {/* <>
           <h2>Popular</h2>
