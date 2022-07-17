@@ -67,7 +67,12 @@ const GetLatestMovies = ({ user }) => {
         <Modal open={selectedMovieData.open} onClose={handleClose}>
           <Modal.Header>{selectedMovieData.movieTitle}</Modal.Header>
           <Modal.Body>
-            <div>{selectedMovieData.movieRating}</div>
+            <div>
+              <p>
+                Average rating according to viewers:{" "}
+                <strong>{selectedMovieData.movieRating}</strong>
+              </p>
+            </div>
             {user === undefined || user === null ? (
               <div
                 onClick={() => {
