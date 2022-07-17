@@ -42,11 +42,13 @@ const PostReviewForm = (props) => {
     axios
       .get(`http://localhost:3001/ratedmovies`)
       .then((res) => {
-        setPreviousReviews(
-          res.data.filter((review) =>
-            console.log(review.movieTitle === props.movieTitle)
-          )
-        );
+        res.data.filter((review) => {
+          if (review.movieTitle === props.movieTitle) {
+            setPreviousReviews(review.userRating);
+          } else {
+            setPreviousReviews(null);
+          }
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -74,9 +76,14 @@ const PostReviewForm = (props) => {
               <button type="submit">Submit Review</button>
             </Form>
           </Formik>
-          <div>
-            <p> You gave this film a {previousReviews.userRating}</p>
-          </div>
+          {previousReviews === null || previousReviews === 0 ? null : (
+            <div>
+              <p>
+                You gave this film a <strong>{previousReviews}</strong> / 5
+                rating.
+              </p>
+            </div>
+          )}
         </>
       ) : (
         <p>{successBanner}</p>
