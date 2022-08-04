@@ -1,21 +1,17 @@
 module.exports = (sequelize, DataTypes) => {
-  const RatedMovies = sequelize.define("RatedMovies", {
-    movieTitle: {
+  const Movies = sequelize.define("Movies", {
+    movie_title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    userRating: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    createdBy: {
+    movie_year: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    userComment: {
+    genre: {
       type: DataTypes.STRING,
       allowNull: false,
     },
   });
-  return RatedMovies;
+  return Movies;
 };

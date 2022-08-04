@@ -7,8 +7,8 @@ app.use(cors());
 
 const db = require("./models");
 
-const ratedMoviesRouter = require("./routes/RatedMovies");
-app.use("/ratedMovies", ratedMoviesRouter);
+const usersRouter = require("./routes/Users");
+app.use("/Users", usersRouter);
 
 db.sequelize.sync().then(() => {
   app.listen(3001, () => {

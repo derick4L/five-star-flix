@@ -18,8 +18,6 @@ const PostReviewForm = (props) => {
     axios
       .post("http://localhost:3001/ratedmovies", values)
       .then((res) => {
-        console.log(res);
-
         setSuccessBanner("Thanks for your review!");
 
         setTimeout(() => {
@@ -76,6 +74,7 @@ const PostReviewForm = (props) => {
               <button type="submit">Submit Review</button>
             </Form>
           </Formik>
+
           {previousReviews === null || previousReviews === 0 ? null : (
             <div>
               <p>

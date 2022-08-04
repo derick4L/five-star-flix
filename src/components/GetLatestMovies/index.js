@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+
 import { Modal } from "rsuite";
 import axios from "axios";
 
@@ -7,7 +7,6 @@ import "./style.scss";
 import PostReviewForm from "../PostReviewForm";
 
 const GetLatestMovies = ({ user }) => {
-  let navigate = useNavigate();
   const [movies, setMovies] = useState([]);
 
   const [selectedMovieData, setSelectedMovieData] = useState({
@@ -73,20 +72,10 @@ const GetLatestMovies = ({ user }) => {
                 <strong>{selectedMovieData.movieRating}</strong>
               </p>
             </div>
-            {user === undefined || user === null ? (
-              <div
-                onClick={() => {
-                  navigate("/auth");
-                }}
-              >
-                click me to rate and comment on this film
-              </div>
-            ) : (
-              <PostReviewForm
-                movieTitle={selectedMovieData.movieTitle}
-                createdBy={user[0]}
-              />
-            )}
+            <PostReviewForm
+              movieTitle={selectedMovieData.movieTitle}
+              createdBy={user[0]}
+            />
           </Modal.Body>
         </Modal>
       ) : null}
