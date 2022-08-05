@@ -1,16 +1,16 @@
 const express = require("express");
 const router = express.Router();
 
-const { Movies } = require("../models");
+const { RatedMovies } = require("../models");
 
 router.get("/", async (req, res) => {
-  const getAllMovies = await Movies.findAll();
-  res.json(getAllMovies);
+  const getAllRatedMovies = await RatedMovies.findAll();
+  res.json(getAllRatedMovies);
 });
 
 router.post("/", async (req, res) => {
   const post = req.body;
-  await Movies.create(post);
+  await RatedMovies.create(post);
   res.json(post);
 });
 

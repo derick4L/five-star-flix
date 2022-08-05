@@ -1,17 +1,16 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
 const PostReviewForm = (props) => {
   const [successBanner, setSuccessBanner] = useState(null);
-  const [previousReviews, setPreviousReviews] = useState([]);
 
   const initialValues = {
-    movieTitle: props.movieTitle,
-    userRating: "",
-    userComment: "",
-    createdBy: props.createdBy,
+    movie_title: props.movie_title,
+    user_rating: "",
+    user_comment: "",
+    created_by: props.created_by,
   };
 
   const onSubmit = (values) => {
@@ -30,28 +29,11 @@ const PostReviewForm = (props) => {
   };
 
   const validationSchema = Yup.object().shape({
-    userRating: Yup.number().max(5).required("Can't send an empty rating"),
-    userComment: Yup.string()
+    user_rating: Yup.number().max(5).required("Can't send an empty rating"),
+    user_comment: Yup.string()
       .max(250)
       .required("Must give a comment to support your rating!"),
   });
-
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3001/ratedmovies`)
-      .then((res) => {
-        res.data.filter((review) => {
-          if (review.movieTitle === props.movieTitle) {
-            setPreviousReviews(review.userRating);
-          } else {
-            setPreviousReviews(null);
-          }
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
 
   return (
     <>
@@ -74,15 +56,6 @@ const PostReviewForm = (props) => {
               <button type="submit">Submit Review</button>
             </Form>
           </Formik>
-
-          {previousReviews === null || previousReviews === 0 ? null : (
-            <div>
-              <p>
-                You gave this film a <strong>{previousReviews}</strong> / 5
-                rating.
-              </p>
-            </div>
-          )}
         </>
       ) : (
         <p>{successBanner}</p>
